@@ -2,7 +2,6 @@ import { Inject, Injectable } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { ArticleDTO } from './DTO/article.dto';
 import { Article } from './interface/article.interface';
-import * as mongoose from 'mongoose';
 
 
 @Injectable()

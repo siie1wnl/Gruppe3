@@ -4,8 +4,8 @@ import { FastifyAdapter } from '@nestjs/platform-fastify';
 import { AppModule } from './app.module';
 
 const CORS_OPTIONS = {
-  origin: ['https://refactored-broccoli-pjrrvwppvvg379gq-4200.app.github.dev/'], // or '*' or whatever is required
-  // origin: ['*'], // or '*' or whatever is required
+  // origin: ['https://refactored-broccoli-pjrrvwppvvg379gq-4200.app.github.dev/'], // or '*' or whatever is required
+  origin: ['*'], // or '*' or whatever is required
   allowedHeaders: [
     'Access-Control-Allow-Origin',
     'Origin',

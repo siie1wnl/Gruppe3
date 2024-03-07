@@ -22,6 +22,9 @@
             <a mat-flat-button color="primary" [routerLink]="['/edit-article', article._id]">
                 <mat-icon>edit</mat-icon>
             </a>
+            <a mat-flat-button color="primary" [routerLink]="['/details-article', article._id]" (click)="deleteArticle(article._id)">
+                <mat-icon>delete</mat-icon>
+            </a>
         </mat-card-actions>
     </mat-card>
 </div>

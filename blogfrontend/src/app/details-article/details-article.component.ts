@@ -32,4 +32,15 @@ export class DetailsArticleComponent {
       });
   }
 
+  deleteArticle(id: string) {
+    console.log("delete article ID " + id);
+    this.api.removeArticle(id)
+      .subscribe((data: any) => {
+        this.article = data;
+        this.isLoadingResults = false;
+        this.router.navigate(['/articles']);
+
+      });
+  }
+
 }

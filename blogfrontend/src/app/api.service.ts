@@ -7,7 +7,7 @@ import { Article } from './article';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = 'https://refactored-broccoli-pjrrvwppvvg379gq-3000.app.github.dev/api/article';
+const apiUrl = 'https://orange-garbanzo-r9vw94j7453wpgr-3000.app.github.dev/api/article';
 
 
 
@@ -56,6 +56,14 @@ export class ApiService {
     const url = `${apiUrl}/${id}`;
     return this.http.put(url, article, httpOptions).pipe(
       tap(_ => console.log(`updated article id=${id}`)),
+      catchError(this.handleError<any>('updateArticle'))
+    );
+  }
+
+  removeArticle(id:any): Observable<any> {
+    const url = `${apiUrl}/${id}`;
+    return this.http.delete(url).pipe(
+      tap(_ => console.log(`deleted article id=${id}`)),
       catchError(this.handleError<any>('updateArticle'))
     );
   }

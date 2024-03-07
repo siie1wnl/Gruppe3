@@ -7,7 +7,9 @@ import { Article } from './article';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
-const apiUrl = 'https://localhost:8080';
+const apiUrl = 'https://refactored-broccoli-pjrrvwppvvg379gq-3000.app.github.dev/api/article';
+
+
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +52,14 @@ export class ApiService {
     return this.http.put(url, article, httpOptions).pipe(
       tap((_) => console.log(`updated article id=${id}`)),
       catchError(this.handleError<any>('updateArticle')),
+    );
+  }
+
+  removeArticle(id:any): Observable<any> {
+    const url = `${apiUrl}/${id}`;
+    return this.http.delete(url).pipe(
+      tap(_ => console.log(`deleted article id=${id}`)),
+      catchError(this.handleError<any>('updateArticle'))
     );
   }
 }

@@ -28,8 +28,6 @@ export class ArticleController {
 
   @Get(':id')
   async find(@Param('id') id: string) {
-    console.log('try to find ' + id);
-    console.log(await this.articleService.find(id));
     return await this.articleService.find(id);
   }
 

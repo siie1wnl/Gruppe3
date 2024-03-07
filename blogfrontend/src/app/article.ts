@@ -4,5 +4,6 @@ export class Article {
   author!: string;
   description!: string;
   content!: string;
+  comments!: string[];
   updatedAt!: Date;
 }

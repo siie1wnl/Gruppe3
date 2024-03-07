@@ -1,33 +1,64 @@
-<div class="example-container mat-elevation-z8">
-  <div class="example-loading-shade" *ngIf="isLoadingResults">
-    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
-  </div>
-  <div class="button-row">
-    <a mat-flat-button color="primary" [routerLink]="['/articles']">
-      <mat-icon>list</mat-icon>
-    </a>
-  </div>
+<div class="main-div">
+
   <mat-card class="example-card">
-    <mat-card-header>
-      <mat-card-title>
-        <h2>{{ article.title }}</h2>
-      </mat-card-title>
-      <mat-card-subtitle
-        >{{ article.author }} | {{ article.updatedAt }}</mat-card-subtitle
-      >
-    </mat-card-header>
-    <mat-card-content>
-      <h3>{{ article.description }}</h3>
-      <p>{{ article.content }}</p>
-    </mat-card-content>
-    <mat-card-actions>
-      <a
-        mat-flat-button
-        color="primary"
-        [routerLink]="['/edit-article', article._id]"
-      >
-        <mat-icon>edit</mat-icon>
-      </a>
-    </mat-card-actions>
+      <mat-card-header>
+      <mat-card-title>{{article.title}}</mat-card-title>
+      <mat-card-subtitle></mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+      <p>
+        {{article.content}}
+      </p>
+      <br>
+      <p>{{article.author}} | {{article.updatedAt}}</p>
+      <br>
+      <form class="example-form" (ngSubmit)="onParentCommentSubmit()" [formGroup]="addComment">
+        <mat-form-field class="example-full-width">
+          <mat-label>Leave a comment</mat-label>
+          <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment"></textarea>
+        </mat-form-field>
+        <button mat-button style="background-color: #C4C4C4; color:black;" type="submit">Post</button>
+      </form>
+      
+      </mat-card-content>
+      <br>
+      <mat-card-content>
+        <p>Comments:</p>
+        <div *ngFor="let comment of allComments; let i = index" style="margin-bottom: 20px;">
+          <mat-card style="background-color: #C4C4C4;">
+            <mat-card-content>{{ comment.content }}</mat-card-content>
+          </mat-card>
+          <div style="padding-left: 20px; margin-top: 10px;" *ngIf="!comment.childComments.length || comment.childComments.length === 0">
+            <form class="example-form" (ngSubmit)="onNewChild(comment)" [formGroup]="addComment">
+                <mat-form-field class="example-full-width" [style.width.px]=400>
+                  <mat-label>Leave a comment</mat-label>
+                  <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment"></textarea>
+                </mat-form-field>
+                <mat-card-actions>
+                    <button mat-button style="background-color: #C4C4C4; color:black;" type="submit">Post</button>
+                    </mat-card-actions>
+              </form>
+          </div>
+          <div *ngFor="let childComment of comment.childComments; let lastChild = last" style="padding-left: 40px; margin-top: 10px;">
+            <mat-card style="background-color: #F0F0F0;">
+              <mat-card-content>{{ childComment }}</mat-card-content>
+            </mat-card>
+            <div style="padding-left: 20px; margin-top: 30px;" *ngIf="lastChild">
+                <form class="example-form" (ngSubmit)="onNewChild(comment)" [formGroup]="addComment">
+                    <mat-form-field class="example-full-width" [style.width.px]=400>
+                      <mat-label>Leave a comment</mat-label>
+                      <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment"></textarea>
+                    </mat-form-field>
+                    <mat-card-actions>
+                        <button mat-button style="background-color: #C4C4C4; color:black;">Post</button>
+                        </mat-card-actions>
+                  </form>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+      
+
   </mat-card>
 </div>

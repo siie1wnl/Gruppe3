@@ -21,6 +21,12 @@ import {
     async update(@Param('id') id: string, @Body() commentDto: CommentDTO) {
       return this.commentService.update(id, commentDto);
     }
+    @Get(':id')
+    async find(@Param('id') id: string) {
+      console.log('try to find ' + id);
+      console.log(await this.commentService.find(id));
+      return await this.commentService.find(id);
+    }
     @Delete(':id')
     async delete(@Param('id') id: string, @Body() commentDto: CommentDTO) {
       return this.commentService.delete(id, commentDto);

@@ -1,0 +1,18 @@
+<mat-card
+  class="w-[15em] !bg-white !border !border-transparent hover:!border-black transition-colors cursor-pointer"
+>
+  <mat-card-header class="!flex !items-center !py-[0.5em] !px-[0.75em]">
+    <mat-card-title>{{ article.title }}</mat-card-title>
+    <mat-icon class="mat-icon-rtl-mirror" svgIcon="thumb-up"></mat-icon>
+  </mat-card-header>
+  <img
+    mat-card-image
+    src="./assets/Test%20Picture.png"
+    alt="Photo of a Shiba Inu"
+  />
+  <mat-card-content>
+    <p class="!h-[5em] !py-[0.5em] !text-ellipsis !overflow-hidden">
+      {{ article.description }}
+    </p>
+  </mat-card-content>
+</mat-card>

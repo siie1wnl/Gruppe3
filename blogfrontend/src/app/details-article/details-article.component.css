@@ -1,23 +1,21 @@
 .example-card {
-  max-width: 40vw;
-}
-.mat-mdc-card{
-  background-color: white;
-}
-.example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-  background-size: cover;
-}
+    max-width: 40vw;
+  }
+  .mat-mdc-card{
+    background-color: white;
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
 
-.main-div{
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-.mat-mdc-card-header {
-  justify-content: center;
-}
+  .main-div{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .mat-mdc-card-header {
+    justify-content: center;
+  }
 
-.example-full-width {
-  width: 100%;
-}
+  

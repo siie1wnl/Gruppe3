@@ -23,6 +23,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ArticleBlockComponent } from './articles/article-block/article-block.component';
+import { MatChipListbox, MatChipOption } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,8 @@ import { ArticleBlockComponent } from './articles/article-block/article-block.co
     MatCardModule,
     MatFormFieldModule,
     ArticleBlockComponent,
+    MatChipListbox,
+    MatChipOption,
   ],
   providers: [provideAnimationsAsync()],
   bootstrap: [AppComponent],

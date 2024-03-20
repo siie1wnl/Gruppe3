@@ -2,5 +2,5 @@ export class CommentDTO {
   readonly _id: string;
   readonly author: string;
   readonly content: string;
-  readonly childComments: string[];
+  readonly parentCommentId: string;
 }

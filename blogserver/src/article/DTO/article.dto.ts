@@ -5,5 +5,5 @@ export class ArticleDTO {
   readonly description: string;
   readonly content: string;
   readonly image: Buffer;
-  readonly comments: [string];
+  readonly comments: string[];
 }

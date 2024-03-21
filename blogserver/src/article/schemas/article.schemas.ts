@@ -7,5 +7,5 @@ export const ArticleSchema = new mongoose.Schema({
   content: { type: String, required: true },
   updatedAt: { type: Date, default: Date.now },
   image: { type: Buffer, required: true },
-  comments: { type: [String], required: false},
+  comments: [{ type: String, required: false}],
 });

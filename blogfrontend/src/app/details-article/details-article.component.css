@@ -1,23 +1,23 @@
 .example-container {
-    position: relative;
-    padding: 5px;
-    width:100%;
-    color: rgba(240, 240, 240, 0.8);
+  position: relative;
+  padding: 5px;
+  width: 100%;
+  color: rgba(240, 240, 240, 0.8);
 }
 
 .example-loading-shade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 56px;
-    right: 0;
-    background: rgba(0, 0, 0, 0.15);
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .mat-flat-button {
-    margin: 5px;
+  margin: 5px;
 }

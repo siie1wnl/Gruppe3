@@ -15,7 +15,6 @@ export class ArticlesComponent implements OnInit {
   constructor(private api: ApiService) {}
 
   ngOnInit(): void {
-
     //Use if you want to fake articles
     // let testArticle: Article = new Article();
     // testArticle._id = '1';
@@ -28,7 +27,6 @@ export class ArticlesComponent implements OnInit {
     // for (let i = 0; i < 5; i++) {
     //   this.data.push(testArticle);
     // }
-
     //TODO comment in if you want to use real backend
     // this.api.getArticles().subscribe(
     //   (res: any) => {

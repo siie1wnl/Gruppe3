@@ -9,6 +9,10 @@
     background-size: cover;
   }
 
+  .example-full-width {
+    width: 100%;
+  }
+
   .main-div{
     display: flex;
     justify-content: center;

@@ -13,14 +13,15 @@
       <br>
       <p>{{article.author}} | {{article.updatedAt}}</p>
       <br>
-      <form class="example-form" (ngSubmit)="onParentCommentSubmit()" [formGroup]="addComment">
+      <form class="example-full" (ngSubmit)="onParentCommentSubmit()" [formGroup]="addComment">
         <mat-form-field class="example-full-width">
           <mat-label>Leave a comment</mat-label>
           <textarea matInput placeholder="Ex. It makes me feel..." formControlName="comment"></textarea>
         </mat-form-field>
+        <br>
         <button mat-button style="background-color: #C4C4C4; color:black;" type="submit">Post</button>
       </form>
-      
+
       </mat-card-content>
       <br>
       <mat-card-content>

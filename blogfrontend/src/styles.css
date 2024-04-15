@@ -12,7 +12,6 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
-<<<<<<< HEAD
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled),
 .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
@@ -28,8 +27,6 @@ body {
 .mat-mdc-form-field-focus-overlay {
   background-color: transparent !important;
 }
-=======
->>>>>>> a82c402 (Add article main site)
 
 .mdc-text-field--filled:not(.mdc-text-field--disabled),.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
     background-color: #C4C4C4 !important;

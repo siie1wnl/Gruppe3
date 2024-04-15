@@ -28,8 +28,6 @@ export class ArticleController {
 
   @Get(':id')
   async find(@Param('id') id: string) {
-    console.log('try to find ' + id);
-    console.log(await this.articleService.find(id));
     return await this.articleService.find(id);
   }
 
@@ -38,8 +36,9 @@ export class ArticleController {
     return this.articleService.update(id, articleDto);
   }
 
-  @Delete(':id')
-  async delete(@Param('id') id: string, @Body() articleDto: ArticleDTO) {
-    return this.articleService.delete(id, articleDto);
-  }
+   @Delete(':id')
+   async delete(@Param('id') id: string, @Body() articleDto: ArticleDTO) {
+      console.log('deleted article with ' + id);
+      return this.articleService.delete(id, articleDto);
+   }
 }

@@ -19,6 +19,7 @@ export class CommentController {
   }
   @Put(':id')
   async update(@Param('id') id: string, @Body() commentDto: CommentDTO) {
+    console.log("Comment reached backend with id: " + id)
     return this.commentService.update(id, commentDto);
   }
   @Get(':id')

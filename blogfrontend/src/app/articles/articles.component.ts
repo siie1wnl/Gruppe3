@@ -28,17 +28,17 @@ export class ArticlesComponent implements OnInit {
     //   this.data.push(testArticle);
     // }
     //TODO comment in if you want to use real backend
-    // this.api.getArticles().subscribe(
-    //   (res: any) => {
-    //     console.log('Fetching data');
-    //     this.data = res;
-    //     console.log(this.data);
-    //     this.isLoadingResults = false;
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.isLoadingResults = false;
-    //   },
-    // );
+     this.api.getArticles().subscribe(
+       (res: any) => {
+        console.log('Fetching data');
+         this.data = res;
+         console.log(this.data);
+         this.isLoadingResults = false;
+       },
+       (err) => {
+         console.log(err);
+         this.isLoadingResults = false;
+       },
+     );
   }
 }

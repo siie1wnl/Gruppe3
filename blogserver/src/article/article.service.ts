@@ -25,6 +25,7 @@ export class ArticleService {
   async find(id: string): Promise<Article[] | any> {
     console.log('Artikel ' + id + ' liefern');
     return await this.articleModel.findById(id).exec();
+    ;
   }
 
   async update(id: string, articleDto: ArticleDTO): Promise<Article> {

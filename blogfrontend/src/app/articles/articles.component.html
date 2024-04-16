@@ -10,8 +10,11 @@
       + Create new Article
     </button>
     <div class="flex flex-wrap gap-[1em] items-start justify-center p-[1em]">
-      <app-article-block *ngFor="let article of data" [article]="article" />
+      <a *ngFor="let article of data" [routerLink]="['/details-article', article._id]" style="text-decoration: none;">
+        <app-article-block [article]="article"></app-article-block>
+      </a>
     </div>
+    
   </div>
   <div class="w-[15em]"></div>
 </section>

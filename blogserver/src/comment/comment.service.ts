@@ -19,8 +19,7 @@ export class CommentService {
     console.log('Kommentar '+id+' liefern');
     return await this.commentModel.findById(id).exec();
 }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async delete(id: string, commentDto: CommentDTO): Promise<Comment> {
+  async delete(id: string): Promise<Comment> {
     return await this.commentModel.findByIdAndDelete(id);
   }
 }

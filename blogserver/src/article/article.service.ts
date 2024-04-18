@@ -30,7 +30,7 @@ export class ArticleService {
         return await this.articleModel.findByIdAndUpdate(id, articleDto);
     }
 
-    async delete(id: string, articleDto: ArticleDTO): Promise<Article> {
+    async delete(id: string): Promise<Article> {
         return await this.articleModel.findByIdAndDelete(id); 
     }
 }

@@ -9,7 +9,7 @@ export class ArticleService {
     constructor(@Inject('ARTICLE_MODEL') private readonly articleModel: Model<Article>) { }
 
     async create(articleDto: ArticleDTO): Promise<Article> {
-        console.log('Neuen Artikel erzeugen'+articleDto);
+        console.log('Neuen Artikel erzeugen' + JSON.stringify(articleDto));
         const createdArticle = new this.articleModel(articleDto);
         return await createdArticle.save();
     }

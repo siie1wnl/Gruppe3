@@ -8,7 +8,7 @@ export class CommentService {
     @Inject('COMMENT_MODEL') private readonly commentModel: Model<Comment>,
   ) {}
   async create(commentDto: CommentDTO): Promise<Comment> {
-    console.log('Neuen Kommentar erzeugen' + commentDto);
+    console.log('Neuen Kommentar erzeugen' + JSON.stringify(commentDto));
     const createdArticle = new this.commentModel(commentDto);
     return await createdArticle.save();
   }

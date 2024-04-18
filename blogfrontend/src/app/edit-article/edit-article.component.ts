@@ -87,7 +87,7 @@ export class EditArticleComponent implements OnInit {
     });
   }
 
-  onFormSubmit() {
+  onFormSubmit() : boolean {
     this.isLoadingResults = true;
     console.log('Fetched from Form ' + this._id);
     this.api.updateArticle(this._id, this.articleForm.value).subscribe(
@@ -96,12 +96,15 @@ export class EditArticleComponent implements OnInit {
         console.log('fetched id ' + id);
         this.isLoadingResults = false;
         this.router.navigate(['/details-article', id]);
+        return true;
       },
       (err: any) => {
         console.log(err);
         this.isLoadingResults = false;
+        return true;
       },
     );
+      return false;
   }
 
   articleDetails() {

@@ -31,7 +31,7 @@ export class NewArticleComponent {
     private api: ApiService,
   ) {}
 
-  onFormSubmit() {
+  onFormSubmit()  {
     this.isLoadingResults = true;
     if (this.addArticleGroup.valid) {
       const formValues = this.addArticleGroup.value;

@@ -9,7 +9,6 @@ import {
   } from '@nestjs/common';
   import { CommentDTO } from './DTO/comment.dto';
   import { CommentService } from './comment.service';
-  import { Comment } from './interface/comment.interface';
   @Controller('comment')
   export class CommentController {
     constructor(private readonly commentService: CommentService) {}
@@ -28,8 +27,8 @@ import {
       return await this.commentService.find(id);
     }
     @Delete(':id')
-    async delete(@Param('id') id: string, @Body() commentDto: CommentDTO) {
-      return this.commentService.delete(id, commentDto);
+    async delete(@Param('id') id: string) {
+      return this.commentService.delete(id);
     }
   }
   

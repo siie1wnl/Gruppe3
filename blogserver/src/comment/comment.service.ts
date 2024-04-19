@@ -8,7 +8,7 @@ export class CommentService {
     @Inject('COMMENT_MODEL') private readonly commentModel: Model<Comment>,
   ) {}
   async create(commentDto: CommentDTO): Promise<Comment> {
-    console.log('Neuen Kommentar erzeugen' + commentDto);
+    console.log('Neuen Kommentar erzeugen' + JSON.stringify(commentDto));
     const createdArticle = new this.commentModel(commentDto);
     return await createdArticle.save();
   }
@@ -19,8 +19,7 @@ export class CommentService {
     console.log('Kommentar ' + id + ' liefern');
     return await this.commentModel.findById(id).exec();
   }
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  async delete(id: string, commentDto: CommentDTO): Promise<Comment> {
+  async delete(id: string): Promise<Comment> {
     return await this.commentModel.findByIdAndDelete(id);
   }
 }

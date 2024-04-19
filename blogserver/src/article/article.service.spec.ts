@@ -50,12 +50,12 @@ describe('ArticleService', () => {
   });
   test("delete article", async () => {
     let id = "63970cffddd60a8ce6107bab";
-    let article = await service.delete(id, null);
+    let article = await service.delete(id);
     expect(article._id).toBe(id);
   });
   test("delete empty string", async () => {
     let id = "";
-    let article = await service.delete(id, null);
+    let article = await service.delete(id);
     expect(article).toBeNull();
   });
   test("create new article", async () => {

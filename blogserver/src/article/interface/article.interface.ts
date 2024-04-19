@@ -5,6 +5,6 @@ export interface Article extends Document {
   readonly author: string;
   readonly description: string;
   readonly content: string;
-  readonly image: Buffer;
+  readonly image: string;
   readonly comments: string[];
 }

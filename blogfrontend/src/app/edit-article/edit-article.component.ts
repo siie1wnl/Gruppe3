@@ -52,6 +52,7 @@ export class EditArticleComponent implements OnInit {
     author: ['', Validators.compose([Validators.required, Validators.email])],
     description: ['', Validators.required],
     content: ['', Validators.requiredTrue],
+    image: ['',Validators.requiredTrue]
   });
   isLoadingResults = false;
   _id = '';
@@ -68,10 +69,11 @@ export class EditArticleComponent implements OnInit {
   ngOnInit(): void {
     this.getArticle(this.route.snapshot.params['id']);
     this.articleForm = this.formBuilder.group({
-      title: [null, Validators.required],
-      author: [null, Validators.required],
-      description: [null, Validators.required],
-      content: [null, Validators.required],
+      'title': [null, Validators.required],
+      'author': [null, Validators.required],
+      'description': [null, Validators.required],
+      'content': [null, Validators.required],
+      'image': [null, Validators.required]
     });
   }
 
@@ -83,6 +85,7 @@ export class EditArticleComponent implements OnInit {
         author: data.author,
         description: data.description,
         content: data.content,
+        image: data.content
       });
     });
   }
@@ -110,4 +113,20 @@ export class EditArticleComponent implements OnInit {
   articleDetails() {
     this.router.navigate(['/details-article', this.articleForm.value['_id']]);
   }
+
+  onFileChange(event: any)
+  {
+    const file = event.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const base64String = reader.result as string;
+      console.log(base64String);
+    }
+
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  }
+
 }

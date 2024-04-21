@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Article } from '../article';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-articles',
@@ -12,7 +13,9 @@ export class ArticlesComponent implements OnInit {
   data: Article[] = [];
   isLoadingResults = true;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private router: Router) {}
+
+
 
   ngOnInit(): void {
     //Use if you want to fake articles
@@ -40,5 +43,9 @@ export class ArticlesComponent implements OnInit {
          this.isLoadingResults = false;
        },
      );
+  }
+
+  viewArticle(article: Article) {
+    this.router.navigate(['/details-article/' + article._id]);
   }
 }

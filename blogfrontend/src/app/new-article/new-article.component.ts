@@ -37,23 +37,17 @@ export class NewArticleComponent {
       const formValues = this.addArticleGroup.value;
       let newArticle: Article = new Article();
 
-      newArticle._id = '';
       newArticle.updatedAt = new Date();
-
+      newArticle._id = null;
       newArticle.title = <string>formValues.title;
       newArticle.description = <string>formValues.description;
       newArticle.content = <string>formValues.content;
       newArticle.author = <string>formValues.author;
 
-      this.api.addArticle(newArticle).subscribe(
-        (res: any) => {
-          this.router.navigate(['/']);
-        },
-        (err: any) => {
-          console.log(err);
-          this.isLoadingResults = false;
-        },
-      );
+      this.api.addArticle(newArticle).subscribe({
+        next: (v) => this.router.navigate(['/']),
+        error: (e) => console.error("error",e),
+      })
     }
   }
 

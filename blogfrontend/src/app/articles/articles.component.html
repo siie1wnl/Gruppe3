@@ -10,7 +10,7 @@
       + Create new Article
     </button>
     <div class="flex flex-wrap gap-[1em] items-start justify-center p-[1em]">
-      <app-article-block *ngFor="let article of data" [article]="article" />
+      <app-article-block *ngFor="let article of data" [article]="article" (click)="viewArticle(article)" />
     </div>
   </div>
   <div class="w-[15em]"></div>

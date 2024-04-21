@@ -6,4 +6,5 @@ export class ArticleDTO {
   readonly content: string;
   readonly image: string;
   readonly comments: string[];
+  updatedAt!: Date;
 }

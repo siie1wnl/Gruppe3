@@ -17,11 +17,12 @@ import { forkJoin } from 'rxjs';
 
 export class DetailsArticleComponent {
   article: Article = {
-    _id: '',
+    _id: null,
     title: '',
     author: '',
     description: '',
     content: '',
+    image:'',
     comments: [''],
     updatedAt: new Date(),
   };
@@ -65,17 +66,17 @@ export class DetailsArticleComponent {
 
   getComments(id: string) {
     console.log('Get comments corresponding to ID ' + id);
-  
+
     const requests = this.article.comments.map(element => {
       return this.api.getComments(element);
     });
-  
+
     forkJoin(requests).subscribe((responses: any[]) => {
       console.log('Received all Comments data');
       console.log(responses);
-  
+
       const allComments = responses.reduce((acc, response) => acc.concat(response), []);
-  
+
       this.allComments = allComments;
       this.isLoadingResults = false;
     });

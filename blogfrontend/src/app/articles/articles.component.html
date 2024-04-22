@@ -9,6 +9,10 @@
     >
       + Create new Article
     </button>
+    <br>
+    <button mat-raised-button class="!bg-[#3F51B5] mb-[2em]">
+      <a href="edit-article/:id">Edit Article</a>
+    </button>
     <div class="flex flex-wrap gap-[1em] items-start justify-center p-[1em]">
       <app-article-block *ngFor="let article of data" [article]="article" (click)="viewArticle(article)" />
     </div>

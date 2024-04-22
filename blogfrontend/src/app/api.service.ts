@@ -5,12 +5,11 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { Article } from './article';
 import { Comment } from './comment';
 
-
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'}),
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
 //TODO change url to preffered backendhost
-const API_URL = "http://localhost:3000" ;
+const API_URL = 'http://localhost:3000';
 const articleUrl = API_URL + '/article';
 const commentUrl = API_URL + '/comment';
 
@@ -46,9 +45,9 @@ export class ApiService {
   }
 
   addArticle(article: Article): Observable<Article> {
-    return this.http.post<Article>(articleUrl, article, httpOptions).pipe(
-      catchError(this.handleError<Article>('addArticle')),
-    );
+    return this.http
+      .post<Article>(articleUrl, article, httpOptions)
+      .pipe(catchError(this.handleError<Article>('addArticle')));
   }
 
   updateArticle(id: any, article: Article): Observable<any> {
@@ -59,8 +58,15 @@ export class ApiService {
     );
   }
 
-  getComments(id: string): Observable<Article> {
+  deleteArticle(id: string): Observable<any> {
+    const url = `${articleUrl}/${id}`;
+    return this.http.delete(url, httpOptions).pipe(
+      tap((_) => console.log(`deleted article id=${id}`)),
+      catchError(this.handleError<any>('deleteArticle')),
+    );
+  }
 
+  getComments(id: string): Observable<Article> {
     const url = `${commentUrl}/${id}`;
     console.log('getComment ' + url);
     return this.http.get<Article>(url).pipe(
@@ -70,17 +76,16 @@ export class ApiService {
   }
 
   addComment(comment: Comment): Observable<Comment> {
-
     return this.http.post<Comment>(commentUrl, comment, httpOptions).pipe(
       tap((art: Comment) => console.log(`added comment w/ id=${art._id}`)),
       catchError(this.handleError<Comment>('addComment')),
     );
   }
 
-  updateComment(id:string, comment: Comment): Observable<Comment> {
+  updateComment(id: string, comment: Comment): Observable<Comment> {
     const url = `${commentUrl}/${id}`;
 
-    console.log("trying to reach following URL: " + url)
+    console.log('trying to reach following URL: ' + url);
     return this.http.put<Comment>(url, comment, httpOptions).pipe(
       tap((art: Comment) => console.log(`updated comment w/ id=${art._id}`)),
       catchError(this.handleError<Comment>('updatedComment')),

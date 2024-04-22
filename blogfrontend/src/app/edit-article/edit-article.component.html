@@ -1,44 +1,50 @@
-<div class="example-container mat-elevation-z8">
-    <div class="example-loading-shade"
-         *ngIf="isLoadingResults">
-      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+<div class="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+  <div class="rounded bg-white mt-10 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="sm:mx-auto sm:w-full sm:max-w-sm">
+      <h2 class="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">Artikel bearbeiten</h2>
     </div>
-    <div class="button-row">
-      <a mat-flat-button color="primary" (click)="articleDetails()"><mat-icon>info</mat-icon></a>
-    </div>
-    <mat-card class="example-card">
-      <form [formGroup]="articleForm" (ngSubmit)="onFormSubmit()">
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" formControlName="title"
-                 [errorStateMatcher]="matcher">
-          <mat-error>
-            <span *ngIf="!articleForm.get('title')?.valid && articleForm.get('title')?.touched">Please enter Title</span>
-          </mat-error>
+
+    <form class="space-y-0" action="#" method="POST">
+      <div class="flex flex-col">
+        <mat-form-field apperance="fill">
+          <input matInput placeholder="Titel" class="bg-gray-100 block w-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Author" formControlName="author"
-                 [errorStateMatcher]="matcher">
-          <mat-error>
-            <span *ngIf="!articleForm.get('author')?.valid && articleForm.get('author')?.touched">Please enter Author</span>
-          </mat-error>
+      </div>
+
+      <div class="flex flex-col">
+        <mat-form-field apperance="fill">
+          <input matInput placeholder="Beschreibung" class="bg-gray-100 block w-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Description" formControlName="description"
-                 [errorStateMatcher]="matcher">
-          <mat-error>
-            <span *ngIf="!articleForm.get('description')?.valid && articleForm.get('description')?.touched">Please enter Description</span>
-          </mat-error>
+      </div>
+
+      <div class="flex flex-col">
+        <mat-form-field apperance="fill">
+          <textarea matInput placeholder="Text" class="bg-gray-100 block w-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"> </textarea>
         </mat-form-field>
-        <mat-form-field class="example-full-width">
-          <textarea matInput placeholder="Content" formControlName="content"
-                 [errorStateMatcher]="matcher"></textarea>
-          <mat-error>
-            <span *ngIf="!articleForm.get('content')?.valid && articleForm.get('content')?.touched">Please enter Content</span>
-          </mat-error>
+      </div>
+
+      <div class="flex flex-col">
+        <mat-form-field apperance="fill">
+          <label for="file-input" class="sr-only">Datei auswählen</label>
+          <input matNatieControl type="file" (change)="onFileChange($event)" accept=".png" name="file-input" id="file-input" class="block w-full border border-gray-200 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none
+            file:bg-gray-50 file:border-0
+            file:me-4
+            file:py-3 file:px-4
+           ">
         </mat-form-field>
-        <div class="button-row">
-          <button type="submit" [disabled]="!articleForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
-        </div>
-      </form>
-    </mat-card>
+      </div>
+
+      <div class="flex flex-col">
+        <mat-form-field apperance="fill">
+          <input matInput placeholder="Autor" class="bg-gray-100 block w-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+        </mat-form-field>
+      </div>
+
+      <div class="flex flex-col">
+        <mat-form-field apperance="fill">
+          <button class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mat-button">Artikel aktualisieren</button>
+        </mat-form-field>
+      </div>
+    </form>
   </div>
+</div>

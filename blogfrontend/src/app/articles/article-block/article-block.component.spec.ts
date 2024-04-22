@@ -6,17 +6,6 @@ describe('ArticleBlockComponent', () => {
   let component: ArticleBlockComponent;
   let fixture: ComponentFixture<ArticleBlockComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ArticleBlockComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(ArticleBlockComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
   it('should create', () => {
     expect(component).toBeTruthy();
   });

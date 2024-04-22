@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Article } from '../article';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-articles',
@@ -12,10 +13,11 @@ export class ArticlesComponent implements OnInit {
   data: Article[] = [];
   isLoadingResults = true;
 
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService, private router: Router) {}
+
+
 
   ngOnInit(): void {
-
     //Use if you want to fake articles
     // let testArticle: Article = new Article();
     // testArticle._id = '1';
@@ -28,19 +30,22 @@ export class ArticlesComponent implements OnInit {
     // for (let i = 0; i < 5; i++) {
     //   this.data.push(testArticle);
     // }
-
     //TODO comment in if you want to use real backend
-    // this.api.getArticles().subscribe(
-    //   (res: any) => {
-    //     console.log('Fetching data');
-    //     this.data = res;
-    //     console.log(this.data);
-    //     this.isLoadingResults = false;
-    //   },
-    //   (err) => {
-    //     console.log(err);
-    //     this.isLoadingResults = false;
-    //   },
-    // );
+     this.api.getArticles().subscribe(
+       (res: any) => {
+        console.log('Fetching data');
+         this.data = res;
+         console.log(this.data);
+         this.isLoadingResults = false;
+       },
+       (err) => {
+         console.log(err);
+         this.isLoadingResults = false;
+       },
+     );
+  }
+
+  viewArticle(article: Article) {
+    this.router.navigate(['/details-article/' + article._id]);
   }
 }

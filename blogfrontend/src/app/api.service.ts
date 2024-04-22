@@ -1,25 +1,25 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, tap, map } from 'rxjs/operators';
 import { Article } from './article';
+import { Comment } from './comment';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
 };
-const apiUrl = 'https://refactored-broccoli-pjrrvwppvvg379gq-3000.app.github.dev/api/article';
+//TODO change url to preffered backendhost
+const API_URL = 'http://localhost:3000';
+const articleUrl = API_URL + '/article';
+const commentUrl = API_URL + '/comment';
 
-
+const apiUrl = 'http://localhost:3000/article';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-
-
 export class ApiService {
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) {}
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -29,34 +29,66 @@ export class ApiService {
   }
 
   getArticles(): Observable<Article[]> {
-    return this.http.get<Article[]>(apiUrl)
-      .pipe(
-        tap(article => console.log('fetched articles')),
-        catchError(this.handleError('getArticles', []))
-      );
+    return this.http.get<Article[]>(articleUrl).pipe(
+      tap((article) => console.log('fetched articles')),
+      catchError(this.handleError('getArticles', [])),
+    );
   }
 
   getArticle(id: string): Observable<Article> {
-    const url = `${apiUrl}/${id}`;
-    console.log("getArticle " + url);
+    const url = `${articleUrl}/${id}`;
+    console.log('getArticle ' + url);
     return this.http.get<Article>(url).pipe(
-      tap(_ => console.log(`fetched article id=${id}`)),
-      catchError(this.handleError<Article>(`getArticle id=${id}`))
+      tap((_) => console.log(`fetched article id=${id}`)),
+      catchError(this.handleError<Article>(`getArticle id=${id}`)),
     );
   }
 
   addArticle(article: Article): Observable<Article> {
-    return this.http.post<Article>(apiUrl, article, httpOptions).pipe(
-      tap((art: Article) => console.log(`added article w/ id=${art._id}`)),
-      catchError(this.handleError<Article>('addArticle'))
-    );
+    return this.http
+      .post<Article>(articleUrl, article, httpOptions)
+      .pipe(catchError(this.handleError<Article>('addArticle')));
   }
 
   updateArticle(id: any, article: Article): Observable<any> {
-    const url = `${apiUrl}/${id}`;
+    const url = `${articleUrl}/${id}`;
     return this.http.put(url, article, httpOptions).pipe(
-      tap(_ => console.log(`updated article id=${id}`)),
-      catchError(this.handleError<any>('updateArticle'))
+      tap((_) => console.log(`updated article id=${id}`)),
+      catchError(this.handleError<any>('updateArticle')),
+    );
+  }
+
+  deleteArticle(id: string): Observable<any> {
+    const url = `${articleUrl}/${id}`;
+    return this.http.delete(url, httpOptions).pipe(
+      tap((_) => console.log(`deleted article id=${id}`)),
+      catchError(this.handleError<any>('deleteArticle')),
+    );
+  }
+
+  getComments(id: string): Observable<Article> {
+    const url = `${commentUrl}/${id}`;
+    console.log('getComment ' + url);
+    return this.http.get<Article>(url).pipe(
+      tap((_) => console.log(`fetched comment id=${id}`)),
+      catchError(this.handleError<Article>(`getComment id=${id}`)),
+    );
+  }
+
+  addComment(comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(commentUrl, comment, httpOptions).pipe(
+      tap((art: Comment) => console.log(`added comment w/ id=${art._id}`)),
+      catchError(this.handleError<Comment>('addComment')),
+    );
+  }
+
+  updateComment(id: string, comment: Comment): Observable<Comment> {
+    const url = `${commentUrl}/${id}`;
+
+    console.log('trying to reach following URL: ' + url);
+    return this.http.put<Comment>(url, comment, httpOptions).pipe(
+      tap((art: Comment) => console.log(`updated comment w/ id=${art._id}`)),
+      catchError(this.handleError<Comment>('updatedComment')),
     );
   }
 }

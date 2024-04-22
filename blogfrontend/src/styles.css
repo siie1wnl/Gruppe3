@@ -12,3 +12,33 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled),
+.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label {
+  background-color: #efefef !important;
+  color: black !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled)
+  .mdc-text-field__input::placeholder {
+  color: black !important;
+}
+
+.mat-mdc-form-field-focus-overlay {
+  background-color: transparent !important;
+}
+
+.mdc-text-field--filled:not(.mdc-text-field--disabled),.mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-floating-label{
+    background-color: #C4C4C4 !important;
+    color:black !important;
+  }
+  
+  .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input::placeholder, .mdc-text-field--filled:not(.mdc-text-field--disabled) .mdc-text-field__input {
+      color:black !important;
+  
+  }
+  
+  .mat-mdc-form-field-focus-overlay {
+    background-color: transparent !important;
+  }
+  

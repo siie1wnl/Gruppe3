@@ -1,23 +1,25 @@
-.example-container {
-    position: relative;
-    padding: 5px;
-    width:100%;
-    color: rgba(240, 240, 240, 0.8);
-}
+.example-card {
+    max-width: 40vw;
+  }
+  .mat-mdc-card{
+    background-color: white;
+  }
+  .example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
 
-.example-loading-shade {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 56px;
-    right: 0;
-    background: rgba(0, 0, 0, 0.15);
-    z-index: 1;
+  .example-full-width {
+    width: 100%;
+  }
+
+  .main-div{
     display: flex;
-    align-items: center;
     justify-content: center;
-}
+    align-items: stretch;
+  }
+  .mat-mdc-card-header {
+    justify-content: center;
+  }
 
-.mat-flat-button {
-    margin: 5px;
-}
+  

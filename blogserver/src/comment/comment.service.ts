@@ -16,9 +16,9 @@ export class CommentService {
     return await this.commentModel.findByIdAndUpdate(id, commentDto);
   }
   async find(id: string): Promise<Comment[] | any> {
-    console.log('Kommentar '+id+' liefern');
+    console.log('Kommentar ' + id + ' liefern');
     return await this.commentModel.findById(id).exec();
-}
+  }
   async delete(id: string): Promise<Comment> {
     return await this.commentModel.findByIdAndDelete(id);
   }

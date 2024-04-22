@@ -3,7 +3,6 @@ import { Model } from 'mongoose';
 import { ArticleDTO } from './DTO/article.dto';
 import { Article } from './interface/article.interface';
 
-
 @Injectable()
 export class ArticleService {
     constructor(@Inject('ARTICLE_MODEL') private readonly articleModel: Model<Article>) { }
@@ -17,12 +16,12 @@ export class ArticleService {
     async findAll(): Promise<Article[]> {
         console.log('Alle Artikel liefern');
         let test = await this.articleModel.find().exec();
-        console.log('>> '+test);
+        console.log('>> ' + test);
         return await this.articleModel.find().exec();
     }
 
     async find(id: string): Promise<Article[] | any> {
-        console.log('Artikel '+id+' liefern');
+        console.log('Artikel ' + id + ' liefern');
         return await this.articleModel.findById(id).exec();
     }
 
@@ -34,4 +33,3 @@ export class ArticleService {
         return await this.articleModel.findByIdAndDelete(id); 
     }
 }
-

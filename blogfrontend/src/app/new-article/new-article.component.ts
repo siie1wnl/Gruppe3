@@ -1,59 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService } from '../api.service';
-import { FormControl, FormGroupDirective, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
-  }
-}
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Article } from '../article';
 
 @Component({
   selector: 'app-new-article',
 
   templateUrl: './new-article.component.html',
-  styleUrl: './new-article.component.css'
+  styleUrl: './new-article.component.css',
 })
-
-
 export class NewArticleComponent {
-
-  articleForm: FormGroup;
   title = '';
   author = '';
   description = '';
   content = '';
   isLoadingResults = false;
-  matcher = new MyErrorStateMatcher();
 
-  constructor(private router: Router, private api: ApiService, private formBuilder: FormBuilder) {
-    this.articleForm = this.formBuilder.group({
-      'title': [null, Validators.required],
-      'author': [null, Validators.required],
-      'description': [null, Validators.required],
-      'content': [null, Validators.required]
-    });
-  }
+  fileToUpload: File | null = null;
 
-  ngOnInit(): void {
-  }
+  addArticleGroup = new FormGroup({
+    title: new FormControl<string>('', [Validators.required]),
+    author: new FormControl<string>('', [Validators.required]),
+    description: new FormControl<string>('', [Validators.required]),
+    content: new FormControl<string>('', [Validators.required]),
+  });
 
-  onFormSubmit() {
+  constructor(
+    private router: Router,
+    private api: ApiService,
+  ) {}
+
+  onFormSubmit()  {
     this.isLoadingResults = true;
-    this.api.addArticle(this.articleForm.value)
-      .subscribe((res: any) => {
-        const id = res._id;
-        this.isLoadingResults = false;
-        this.router.navigate(['/details-article', id]);
-      }, (err: any) => {
-        console.log(err);
-        this.isLoadingResults = false;
-      });
+    if (this.addArticleGroup.valid) {
+      const formValues = this.addArticleGroup.value;
+      let newArticle: Article = new Article();
+
+      newArticle.updatedAt = new Date();
+      newArticle._id = null;
+      newArticle.title = <string>formValues.title;
+      newArticle.description = <string>formValues.description;
+      newArticle.content = <string>formValues.content;
+      newArticle.author = <string>formValues.author;
+
+      this.api.addArticle(newArticle).subscribe({
+        next: (v) => this.router.navigate(['/']),
+        error: (e) => console.error("error",e),
+      })
+    }
   }
 
+  handleFileInput(event: any) {
+    const file: File = event.target.files[0];
+
+    if (file) {
+      this.fileToUpload = file;
+      console.log(file);
+    }
+  }
 }

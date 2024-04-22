@@ -18,6 +18,7 @@ import {
     }
     @Put(':id')
     async update(@Param('id') id: string, @Body() commentDto: CommentDTO) {
+      console.log("Comment reached backend with id: " + id)
       return this.commentService.update(id, commentDto);
     }
     @Get(':id')
@@ -30,5 +31,4 @@ import {
     async delete(@Param('id') id: string) {
       return this.commentService.delete(id);
     }
-  }
-  
+}
